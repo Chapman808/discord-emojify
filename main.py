@@ -62,6 +62,7 @@ def _get_user_emoji_id(guildId : str, user: dict, api_key : str):
     r = requests.get(url=url, headers=headers)
     for emoji in json.loads(r.text):
         if emoji["name"] == user["username"]: return emoji["id"]
+        
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='utility to upload custom server emojis for each users on a Discord server')
     parser.add_argument('--key', required=True)
@@ -76,3 +77,5 @@ if __name__ == "__main__":
         avatar = get_avatar_bytes(user)
         print(delete_user_emoji(guildId=guild, user=user, api_key=api_key))
         upload_server_emoji(guildId=guild, user=user, image=avatar, api_key=api_key)
+
+        
